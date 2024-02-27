@@ -160,17 +160,7 @@ export class World
 			{
 				this.update(1, 1);
 				this.setTimeScale(1);
-	
-				Swal.fire({
-					title: 'Welcome to Sketchbook!',
-					text: 'Feel free to explore the world and interact with available vehicles. There are also various scenarios ready to launch from the right panel.',
-					footer: '<a href="https://github.com/swift502/Sketchbook" target="_blank">GitHub page</a><a href="https://discord.gg/fGuEqCe" target="_blank">Discord server</a>',
-					confirmButtonText: 'Okay',
-					buttonsStyling: false,
-					onClose: () => {
-						UIManager.setUserInterfaceVisible(true);
-					}
-				});
+                UIManager.setUserInterfaceVisible(true);
 			};
 			loadingManager.loadGLTF(worldScenePath, (gltf) =>
 				{
@@ -533,7 +523,7 @@ export class World
 			Time_Scale: 1,
 			Shadows: true,
 			FXAA: true,
-			Debug_Physics: false,
+			Debug_Physics: true,
 			Debug_FPS: false,
 			Sun_Elevation: 50,
 			Sun_Rotation: 145,
@@ -544,6 +534,11 @@ export class World
 		// Scenario
 		this.scenarioGUIFolder = gui.addFolder('Scenarios');
 		this.scenarioGUIFolder.open();
+		this.cannonDebugRenderer = new CannonDebugRenderer( this.graphicsWorld, this.physicsWorld );
+		scope.characters.forEach((char) =>
+		{
+			char.raycastBox.visible = true;
+		});
 
 		// World
 		let worldFolder = gui.addFolder('World');

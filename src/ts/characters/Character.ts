@@ -152,7 +152,7 @@ export class Character extends THREE.Object3D implements IWorldEntity
 			color: 0xff0000
 		});
 		this.raycastBox = new THREE.Mesh(boxGeo, boxMat);
-		this.raycastBox.visible = false;
+		this.raycastBox.visible = true;
 
 		// Physics pre/post step callback bindings
 		this.characterCapsule.body.preStep = (body: CANNON.Body) => { this.physicsPreStep(body, this); };
